@@ -1,0 +1,40 @@
+image:
+  name: docker/compose:1.22.0
+  entrypoint: [""]
+
+variables:
+  DOCKER_REGISTRY: lab.wienerdeming.com:4567
+  CONTAINER_RELEASE_IMAGE: $DOCKER_REGISTRY/gs1/gs1_api:latest
+  CONTAINER_TEST_IMAGE: $DOCKER_REGISTRY/gs1/gs1_api:$CI_COMMIT_REF_SLUG
+
+before_script:
+  - whoami
+  - docker info
+  - docker-compose --version
+  - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $DOCKER_REGISTRY
+
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  script:
+    - docker build -t $CONTAINER_TEST_IMAGE .
+    - docker-compose -f docker-compose.test.yml run web
+    - docker push $CONTAINER_TEST_IMAGE
+  tags:
+    - staging
+
+deploy:
+  stage: deploy
+  script:
+    - docker pull $CONTAINER_TEST_IMAGE
+    - docker tag $CONTAINER_TEST_IMAGE $CONTAINER_RELEASE_IMAGE
+    - docker push $CONTAINER_RELEASE_IMAGE
+    - docker-compose down
+    - docker-compose -p gs1_api up -d
+  only:
+    - master
+  tags:
+    - staging

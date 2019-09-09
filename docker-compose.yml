@@ -1,0 +1,86 @@
+version: "3"
+
+services:
+  # Redis
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+
+  # Postgres
+  postgres:
+    restart: always
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    volumes:
+      - /var/www/chat_lead_back/pgdata:/var/lib/postgresql/data
+
+  # rabbitmq
+  rabbitmq:
+    image: rabbitmq:latest
+    ports:
+      - 5672:5672
+    volumes:
+      - /var/www/chat_lead_back/rabbitmq:/var/lib/rabbitmq
+
+  # App
+  web:
+    restart: always
+    env_file:
+      - /conf/.env
+    image: $CONTAINER_RELEASE_IMAGE
+    links:
+      - postgres:postgres
+      - redis:redis
+      - rabbitmq
+    ports:
+      - "8000:8000"
+    volumes:
+      - /var/www/chat_lead_back/uploads:/var/www/chat_lead_back/uploads
+      - /var/www/chat_lead_back/static:/var/www/chat_lead_back/static
+      - /var/www/chat_lead_back/conf:/conf
+    depends_on:
+      - postgres
+      - redis
+      - rabbitmq
+
+  worker:
+    restart: always
+    environment:
+      - WORKER=True
+    env_file:
+      - /conf/.env
+    image: $CONTAINER_RELEASE_IMAGE
+    links:
+      - postgres:postgres
+      - redis:redis
+      - rabbitmq
+    depends_on:
+      - postgres
+      - redis
+      - rabbitmq
+    volumes:
+      - /var/www/chat_lead_back/uploads:/var/www/chat_lead_back/uploads
+      - /var/www/chat_lead_back/static:/var/www/chat_lead_back/static
+      - /var/www/chat_lead_back/conf:/conf
+
+  cron:
+    restart: always
+    environment:
+      - CRON=True
+    env_file:
+      - /conf/.env
+    image: $CONTAINER_RELEASE_IMAGE
+    links:
+      - postgres:postgres
+      - redis:redis
+      - rabbitmq
+    depends_on:
+      - postgres
+      - redis
+      - rabbitmq
+    volumes:
+      - /var/www/chat_lead_back/uploads:/var/www/chat_lead_back/uploads
+      - /var/www/chat_lead_back/static:/var/www/chat_lead_back/static
+      - /var/www/chat_lead_back/conf:/conf
