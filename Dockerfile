@@ -6,7 +6,7 @@ ENV PROJECT_PATH /var/www/$PROJECT_NAME
 ##############################
 # Install dependency
 ##############################
-RUN yum install epel-release
+RUN yum install -y epel-release
 RUN yum install -y gcc make zlib-devel openssl openssl-devel \
                    xz-devel groupinstall development bzip2-devel\
                    yum-utils wget; \
