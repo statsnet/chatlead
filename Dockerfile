@@ -30,6 +30,7 @@ RUN set -ex; \
 	\
 	yum install -y epel-release; \
 	yum install -y wget dpkg; \
+	yum install -y python3-pip; \
 	\
 	dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')"; \
 	wget -O /usr/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch"; \
@@ -81,7 +82,7 @@ RUN source .venv/bin/activate && pip3 install -r requirements.txt
 # Copy project files
 COPY --chown=app . $PROJECT_PATH
 
-VOLUME $PROJECT_PATH/media
+VOLUME $PROJECT_PATH/uploads
 VOLUME $PROJECT_PATH/static
 
 # Copy entrypoint script to root directory
