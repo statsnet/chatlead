@@ -72,6 +72,8 @@ WORKDIR $PROJECT_PATH
 # Copy requirements for catch
 ADD ./requirements.txt $PROJECT_PATH
 
+RUN echo locate pip3
+
 # Create virtualenv
 RUN pip3 install virtualenv
 
