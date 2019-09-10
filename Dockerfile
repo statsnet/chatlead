@@ -46,8 +46,7 @@ RUN set -ex; \
 	chmod +x /usr/bin/gosu; \
 # verify that the binary works
 	gosu nobody true; \
-	\
-	yum remove -y dpkg; \
+	yum -y remove dpkg; \
 	yum clean all
 
 #######################################
