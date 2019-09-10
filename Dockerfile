@@ -72,11 +72,11 @@ WORKDIR $PROJECT_PATH
 # Copy requirements for catch
 ADD ./requirements.txt $PROJECT_PATH
 
-RUN locate pip3 \
-    locate python \
-    locate python3 \
-    locate python3.7 \
-    locate pip
+RUN find pip3 \
+    find python \
+    find python3 \
+    find python3.7 \
+    find pip
 
 # Create virtualenv
 RUN pip3 install virtualenv
