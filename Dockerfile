@@ -26,6 +26,7 @@ RUN wget --progress=dot:mega https://www.python.org/ftp/python/3.7.4/Python-3.7.
 # Install gosu
 ##############################
 ENV GOSU_VERSION 1.10
+RUN yum -y update
 RUN set -ex; \
 	\
 	yum install -y epel-release; \
