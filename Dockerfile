@@ -29,8 +29,8 @@ ENV GOSU_VERSION 1.10
 RUN set -ex; \
 	\
 	yum -y install epel-release; \
-	yum -y install python3-pip; \
 	yum -y install wget dpkg; \
+	yum -y install python3-pip; \
 	\
 	dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')"; \
 	wget -O /usr/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch"; \
