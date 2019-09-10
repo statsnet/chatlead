@@ -73,6 +73,10 @@ WORKDIR $PROJECT_PATH
 ADD ./requirements.txt $PROJECT_PATH
 
 RUN echo locate pip3
+RUN echo locate python
+RUN echo locate python3
+RUN echo locate python3.7
+RUN echo locate pip
 
 # Create virtualenv
 RUN pip3 install virtualenv
