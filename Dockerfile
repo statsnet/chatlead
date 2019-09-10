@@ -30,7 +30,6 @@ RUN set -ex; \
 	\
 	yum -y install epel-release; \
 	yum -y install wget dpkg; \
-	yum -y install python3-pip; \
 	\
 	dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')"; \
 	wget -O /usr/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch"; \
@@ -47,7 +46,7 @@ RUN set -ex; \
 	gosu nobody true; \
 	\
 	yum -y remove dpkg; \
-RUN yum clean all
+	yum clean all
 
 #######################################
 # Install gettext
