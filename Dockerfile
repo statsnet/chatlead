@@ -28,8 +28,8 @@ RUN wget --progress=dot:mega https://www.python.org/ftp/python/3.7.4/Python-3.7.
 ENV GOSU_VERSION 1.10
 RUN set -ex; \
 	\
-	yum install epel-release; \
-	yum install wget dpkg; \
+	yum install -y epel-release; \
+	yum install -y wget dpkg; \
 	\
 	dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')"; \
 	wget -O /usr/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch"; \
@@ -45,23 +45,8 @@ RUN set -ex; \
 # verify that the binary works
 	gosu nobody true; \
 	\
-	yum remove dpkg; \
+	yum remove -y dpkg; \
 	yum clean all
-
-####################################
-# Install wkhtmltopdf
-###################################
-RUN yum install -y which xorg-x11-server-Xvfb.x86_64 \
-                   libpng libjpeg icu libX11 libXext libXrender \
-                   xorg-x11-fonts-Type1 \
-                   xorg-x11-fonts-cyrillic xorg-x11-fonts-misc \
-                   xorg-x11-fonts-truetype xorg-x11-fonts-100dpi \
-                   xorg-x11-fonts-75dpi fonts-ISO8859-2 \
-                   fonts-ISO8859-2-100dpi fonts-ISO8859-2-75dpi freefont; \
-                   yum clean all
-RUN wget https://downloads.wkhtmltopdf.org/0.12/0.12.5/wkhtmltox-0.12.5-1.centos7.x86_64.rpm; \
-    rpm -Uvh wkhtmltox-0.12.5-1.centos7.x86_64.rpm; \
-    ln -s /usr/local/bin/wkhtmltopdf /usr/bin/wkhtmltopdf
 
 #######################################
 # Install gettext
