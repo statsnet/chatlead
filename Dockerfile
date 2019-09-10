@@ -71,14 +71,12 @@ WORKDIR $PROJECT_PATH
 # Copy requirements for catch
 ADD ./requirements.txt $PROJECT_PATH
 
-RUN yum -y install python3-pip
-
 # Create virtualenv
-RUN pip3 install virtualenv
+RUN pip install virtualenv
 
 # Install dependency
-RUN virtualenv .venv
-RUN source .venv/bin/activate && pip3 install -r requirements.txt
+RUN virtualenv --python=$(which python3.7) .venv
+RUN source .venv/bin/activate && pip install -r requirements.txt
 
 # Copy project files
 COPY --chown=app . $PROJECT_PATH
