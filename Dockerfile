@@ -6,6 +6,7 @@ ENV PROJECT_PATH /var/www/$PROJECT_NAME
 ##############################
 # Install dependency
 ##############################
+RUN yum -y update
 RUN yum -y install epel-release
 RUN yum install -y gcc make zlib-devel openssl openssl-devel \
                    xz-devel groupinstall development bzip2-devel\
@@ -71,12 +72,14 @@ WORKDIR $PROJECT_PATH
 # Copy requirements for catch
 ADD ./requirements.txt $PROJECT_PATH
 
+RUN yum -y install python3-pip
+
 # Create virtualenv
-RUN pip install virtualenv
+RUN pip3 install virtualenv
 
 # Install dependency
-RUN virtualenv --python=$(which python3.7) .venv
-RUN source .venv/bin/activate && pip install -r requirements.txt
+RUN virtualenv .venv
+RUN source .venv/bin/activate && pip3 install -r requirements.txt
 
 # Copy project files
 COPY --chown=app . $PROJECT_PATH
