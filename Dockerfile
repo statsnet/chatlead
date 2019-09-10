@@ -6,7 +6,7 @@ ENV PROJECT_PATH /var/www/$PROJECT_NAME
 ##############################
 # Install dependency
 ##############################
-RUN yum install -y epel-release
+RUN yum -y install epel-release
 RUN yum install -y gcc make zlib-devel openssl openssl-devel \
                    xz-devel groupinstall development bzip2-devel\
                    yum-utils wget; \
@@ -26,12 +26,11 @@ RUN wget --progress=dot:mega https://www.python.org/ftp/python/3.7.4/Python-3.7.
 # Install gosu
 ##############################
 ENV GOSU_VERSION 1.10
-RUN yum -y update
 RUN set -ex; \
 	\
-	yum install -y epel-release; \
-	yum install -y wget dpkg; \
-	yum install -y python3-pip; \
+	yum -y install epel-release; \
+	yum -y install python3-pip; \
+	yum -y install wget dpkg; \
 	\
 	dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')"; \
 	wget -O /usr/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch"; \
@@ -46,13 +45,14 @@ RUN set -ex; \
 	chmod +x /usr/bin/gosu; \
 # verify that the binary works
 	gosu nobody true; \
+	\
 	yum -y remove dpkg; \
 	yum clean all
 
 #######################################
 # Install gettext
 #######################################
-RUN yum install -y gettext; \
+RUN yum -y install gettext; \
                 yum clean all
 
 ######################################
