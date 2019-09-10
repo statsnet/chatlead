@@ -47,7 +47,7 @@ RUN set -ex; \
 	gosu nobody true; \
 	\
 	yum -y remove dpkg; \
-	yum clean all
+RUN yum clean all
 
 #######################################
 # Install gettext
