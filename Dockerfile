@@ -75,6 +75,8 @@ RUN apt install -y gettext; \
 # Create user for run application
 RUN useradd -u 1000 app
 
+RUN usermod -aG docker app
+
 RUN mkdir -p $PROJECT_PATH
 
 # Permission project directory
