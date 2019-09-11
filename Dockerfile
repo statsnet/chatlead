@@ -22,8 +22,6 @@ RUN wget --progress=dot:mega https://www.python.org/ftp/python/3.7.4/Python-3.7.
     cd Python-3.7.4 && ./configure && make && make install; \
     rm -rf Python-3.7.4
 
-RUN wget --progress=dot:mega https://bootstrap.pypa.io/get-pip.py -o get-pip.py; \
-    python3.7 get-pip.py pip==19.2.3 wheel==0.30.0 setuptools==28.8.0
 ##############################
 # Install gosu
 ##############################
