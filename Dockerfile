@@ -22,7 +22,7 @@ RUN wget --progress=dot:mega https://www.python.org/ftp/python/3.7.4/Python-3.7.
     cd Python-3.7.4 && ./configure && make && make install; \
     rm -rf Python-3.7.4
 
-RUN ls - l /usr/local/bin
+RUN dir /usr/local/bin
 ##############################
 # Install gosu
 ##############################
