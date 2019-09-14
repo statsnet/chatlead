@@ -72,7 +72,7 @@ WORKDIR $PROJECT_PATH
 ADD ./requirements.txt $PROJECT_PATH
 
 # Create virtualenv
-RUN yum install -y python37-pip
+RUN python --version
 RUN pip3 install virtualenv
 
 # Install dependency
