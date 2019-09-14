@@ -23,9 +23,6 @@ RUN wget --progress=dot:mega https://www.python.org/ftp/python/3.7.4/Python-3.7.
     tar -xvvf Python-3.7.4.tar.xz > /dev/null; \
     cd Python-3.7.4 && ./configure && make && make install; \
     rm -rf Python-3.7.4;
-    yum install -y curl;
-    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py;
-    python3 get-pip.py
 
 ##############################
 # Install gosu
@@ -76,6 +73,9 @@ WORKDIR $PROJECT_PATH
 ADD ./requirements.txt $PROJECT_PATH
 
 # Create virtualenv
+RUN yum install -y curl;
+    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py;
+    python3 get-pip.py
 RUN pip3 install virtualenv
 
 # Install dependency
