@@ -73,6 +73,7 @@ WORKDIR $PROJECT_PATH
 ADD ./requirements.txt $PROJECT_PATH
 
 # Create virtualenv
+RUN ls -all /usr/bin/
 RUN pip3.7 install virtualenv
 
 # Install dependency
