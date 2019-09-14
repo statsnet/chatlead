@@ -8,7 +8,7 @@ ENV PROJECT_PATH /var/www/$PROJECT_NAME
 ##############################
 RUN yum -y update
 RUN yum -y install epel-release
-RUN yum install -y gcc make zlib-devel openssl openssl-devel \
+RUN yum install -y gcc make zlib-devel libffi-dev openssl openssl-devel \
                    xz-devel groupinstall development bzip2-devel\
                    python-pip3 \
                    python37u-libs python37u-devel python37u-pip \
@@ -23,6 +23,9 @@ RUN wget --progress=dot:mega https://www.python.org/ftp/python/3.7.4/Python-3.7.
     tar -xvvf Python-3.7.4.tar.xz > /dev/null; \
     cd Python-3.7.4 && ./configure && make && make install; \
     rm -rf Python-3.7.4;
+RUN yum install -y curl; \
+    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py; \
+    python3 get-pip.py
 
 ##############################
 # Install gosu
@@ -73,9 +76,6 @@ WORKDIR $PROJECT_PATH
 ADD ./requirements.txt $PROJECT_PATH
 
 # Create virtualenv
-RUN yum install -y curl; \
-    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py; \
-    python3 get-pip.py
 RUN pip3 install virtualenv
 
 # Install dependency
