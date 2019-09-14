@@ -74,7 +74,7 @@ class Trigger(models.Model):
 class Tag(models.Model):
     action = models.CharField(max_length=20, default='add', choices=genchoices('add', 'remove'))
     tag_name = models.CharField(max_length=30, default='')
-    trigger = models.ForeignKey(Trigger, on_delete=models.CASCADE, related_name='tags')
+    trigger = models.ForeignKey('Trigger', on_delete=models.CASCADE, related_name='tags')
 
 
 class User(AbstractUser):
