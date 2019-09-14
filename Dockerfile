@@ -21,7 +21,7 @@ RUN yum install -y gcc make zlib-devel libffi-dev openssl openssl-devel \
 ##############################
 RUN wget --progress=dot:mega https://www.python.org/ftp/python/3.7.4/Python-3.7.4.tar.xz; \
     tar -xvvf Python-3.7.4.tar.xz > /dev/null; \
-    cd Python-3.7.4 && ./configure && make && make install; \
+    cd Python-3.7.4 && ./configure --without-ensurepip && make && make install; \
     rm -rf Python-3.7.4;
 RUN yum install -y curl; \
     curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py; \
