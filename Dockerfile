@@ -30,7 +30,6 @@ RUN wget --progress=dot:mega https://www.python.org/ftp/python/3.7.4/Python-3.7.
 ENV GOSU_VERSION 1.10
 RUN set -ex; \
 	\
-	yum -y install epel-release; \
 	yum -y install wget dpkg; \
 	\
 	dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')"; \
@@ -74,16 +73,11 @@ WORKDIR $PROJECT_PATH
 ADD ./requirements.txt $PROJECT_PATH
 
 # Create virtualenv
-#RUN ls -all /usr/bin/
-#RUN ls -all /usr/local/bin/
-RUN yum -y install epel-release; \
-    yum install -y apt update; \
-    yum install - y python3-pip python37u-libs python37u-devel python37u-pip
-RUN pip3.7 install virtualenv
+RUN pip3 install virtualenv
 
 # Install dependency
 RUN virtualenv .venv
-RUN source .venv/bin/activate && pip3.7 install -r requirements.txt
+RUN source .venv/bin/activate && pip3 install -r requirements.txt
 
 # Copy project files
 COPY --chown=app . $PROJECT_PATH
