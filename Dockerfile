@@ -73,8 +73,8 @@ WORKDIR $PROJECT_PATH
 ADD ./requirements.txt $PROJECT_PATH
 
 # Create virtualenv
-RUN yum install -y curl;
-    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py;
+RUN yum install -y curl; \
+    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py; \
     python3 get-pip.py
 RUN pip3 install virtualenv
 
