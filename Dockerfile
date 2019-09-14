@@ -8,8 +8,8 @@ ENV PROJECT_PATH /var/www/$PROJECT_NAME
 ##############################
 RUN yum -y update
 RUN yum -y install epel-release
-RUN yum install -y gcc make zlib-devel libffi-dev openssl openssl-devel \
-                   xz-devel groupinstall development bzip2-devel\
+RUN yum install -y gcc make zlib-devel libffi-dev  openssl openssl-devel \
+                   xz-devel groupinstall development bzip2-devel libffi-devel \
                    python-pip3 \
                    python37u-libs python37u-devel python37u-pip \
                    yum-utils wget; \
