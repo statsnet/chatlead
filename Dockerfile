@@ -76,8 +76,8 @@ ADD ./requirements.txt $PROJECT_PATH
 # Create virtualenv
 #RUN ls -all /usr/bin/
 #RUN ls -all /usr/local/bin/
-RUN yum install -y apt-get update python3-pip python37u-libs python37u-devel
-                                  python37u-pip
+RUN yum install -y apt-get update; \
+    yum install - y python3-pip python37u-libs python37u-devel python37u-pip
 RUN pip3.7 install virtualenv
 
 # Install dependency
