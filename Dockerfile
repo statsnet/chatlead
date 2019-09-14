@@ -11,7 +11,7 @@ RUN yum -y install epel-release
 RUN yum install -y gcc make zlib-devel openssl openssl-devel \
                    xz-devel groupinstall development bzip2-devel\
                    python-pip3 \
-                   python37u-pip \
+                   python37u-libs python37u-devel python37u-pip \
                    yum-utils wget; \
                    yum clean all
 
