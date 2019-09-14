@@ -73,11 +73,11 @@ WORKDIR $PROJECT_PATH
 ADD ./requirements.txt $PROJECT_PATH
 
 # Create virtualenv
-RUN pip3 install virtualenv
+RUN pip3.7 install virtualenv
 
 # Install dependency
 RUN virtualenv .venv
-RUN source .venv/bin/activate && pip3 install -r requirements.txt
+RUN source .venv/bin/activate && pip3.7 install -r requirements.txt
 
 # Copy project files
 COPY --chown=app . $PROJECT_PATH
