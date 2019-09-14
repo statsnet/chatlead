@@ -72,6 +72,9 @@ WORKDIR $PROJECT_PATH
 # Copy requirements for catch
 ADD ./requirements.txt $PROJECT_PATH
 
+RUN yum install -y python37-setuptools; \
+    easy_install pip3
+
 # Create virtualenv
 RUN pip3 install virtualenv
 
