@@ -10,6 +10,7 @@ RUN yum -y update
 RUN yum -y install epel-release
 RUN yum install -y gcc make zlib-devel openssl openssl-devel \
                    xz-devel groupinstall development bzip2-devel\
+                   python-pip3 \
                    yum-utils wget; \
                    yum clean all
 
@@ -72,10 +73,11 @@ WORKDIR $PROJECT_PATH
 ADD ./requirements.txt $PROJECT_PATH
 
 # Create virtualenv
-RUN python3.7 -m venv .venv
+RUN pip3 install virtualenv
 
 # Install dependency
-RUN source .venv/bin/activate && pip install -r requirements.txt
+RUN virtualenv .venv
+RUN source .venv/bin/activate && pip3 install -r requirements.txt
 
 # Copy project files
 COPY --chown=app . $PROJECT_PATH
