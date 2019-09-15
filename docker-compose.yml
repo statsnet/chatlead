@@ -39,7 +39,6 @@ services:
     volumes:
       - /var/www/chat_lead_back/uploads:/var/www/chat_lead_back/uploads
       - /var/www/chat_lead_back/static:/var/www/chat_lead_back/static
-      - /var/www/chat_lead_back/conf:/conf
     depends_on:
       - postgres
       - redis
