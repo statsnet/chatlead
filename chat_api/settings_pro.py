@@ -1,4 +1,4 @@
-#
+import os
 # import socket
 #
 # ip = socket.gethostbyname(socket.gethostname())
@@ -16,7 +16,7 @@ FB_CLIENT_SECRET = "f822b68be653ab6e7cb8cd56675b6e85"
 
 VK_CLIENT_ID = 7085372
 VK_CLIENT_SECRET = "ttKXFSFwNEN6LqopzC35"
-SECRET_KEY = '6zpjdg&&t5i^s%skb0w%x#+9t5v75971&bs92nxq*!u3y)'
+SECRET_KEY = os.environ['SECRET_KEY']
 DEBUG = True
 SESSION_COOKIE_SECURE = False
 CSRF_COOKIE_SECURE = False
@@ -108,9 +108,13 @@ WSGI_APPLICATION = 'chat_api.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('DATABASE_NAME'),
+        'USER': os.environ.get('DATABASE_USER'),
+        'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
+        'HOST': os.environ.get('DATABASE_HOST', '127.0.0.1'),
+        'PORT': os.environ.get('DATABASE_PORT', '5432'),
+    },
 }
 
 # Password validation
