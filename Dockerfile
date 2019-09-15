@@ -89,6 +89,7 @@ VOLUME $PROJECT_PATH/uploads
 VOLUME $PROJECT_PATH/static
 
 # Copy entrypoint script to root directory
+RUN chmod +x ./docker-entrypoint.sh
 COPY ./docker-entrypoint.sh /
 RUN yum -y install bash
 
