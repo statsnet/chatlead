@@ -27,8 +27,8 @@ services:
   # App
   web:
     restart: always
-    env_file:
-      - /conf/.env
+#    env_file:
+#      - /conf/.env
     image: $CONTAINER_RELEASE_IMAGE
     links:
       - postgres:postgres
@@ -39,7 +39,7 @@ services:
     volumes:
       - /var/www/chat_lead_back/uploads:/var/www/chat_lead_back/uploads
       - /var/www/chat_lead_back/static:/var/www/chat_lead_back/static
-      - /var/www/chat_lead_back/conf:/conf
+#      - /var/www/chat_lead_back/conf:/conf
     depends_on:
       - postgres
       - redis
@@ -49,8 +49,8 @@ services:
     restart: always
     environment:
       - WORKER=True
-    env_file:
-      - /conf/.env
+#    env_file:
+#      - /conf/.env
     image: $CONTAINER_RELEASE_IMAGE
     links:
       - postgres:postgres
@@ -63,14 +63,14 @@ services:
     volumes:
       - /var/www/chat_lead_back/uploads:/var/www/chat_lead_back/uploads
       - /var/www/chat_lead_back/static:/var/www/chat_lead_back/static
-      - /var/www/chat_lead_back/conf:/conf
+#      - /var/www/chat_lead_back/conf:/conf
 
   cron:
     restart: always
     environment:
       - CRON=True
-    env_file:
-      - /conf/.env
+#    env_file:
+#      - /conf/.env
     image: $CONTAINER_RELEASE_IMAGE
     links:
       - postgres:postgres
@@ -83,4 +83,4 @@ services:
     volumes:
       - /var/www/chat_lead_back/uploads:/var/www/chat_lead_back/uploads
       - /var/www/chat_lead_back/static:/var/www/chat_lead_back/static
-      - /var/www/chat_lead_back/conf:/conf
+#      - /var/www/chat_lead_back/conf:/conf
