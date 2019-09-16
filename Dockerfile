@@ -91,5 +91,6 @@ VOLUME $PROJECT_PATH/static
 # Copy entrypoint script to root directory
 RUN yum -y install bash
 COPY ./docker-entrypoint.sh /
+RUN chmod +x /docker-entrypoint.sh
 
-ENTRYPOINT ["chmod", "+x", "/docker-entrypoint.sh"]
+ENTRYPOINT ["/docker-entrypoint.sh"]
