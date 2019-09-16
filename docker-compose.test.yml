@@ -12,7 +12,7 @@ services:
   web:
     image: $CONTAINER_TEST_IMAGE
     environment:
-      - DJANGO_SETTINGS_MODULE=gsone.settings_test
+      - DJANGO_SETTINGS_MODULE=chat_api.settings_test
       - DATABASE_HOST=postgres
       - DATABASE_NAME=postgres
       - DATABASE_USER=postgres
