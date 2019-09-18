@@ -39,7 +39,7 @@ if not os.path.exists(UPLOAD_PATH):
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
-ALLOWED_HOSTS = ["127.0.0.1", "5.23.53.17", "188.225.27.75", "chatlead.io"]
+ALLOWED_HOSTS = ['*']
 
 AUTH_USER_MODEL = 'GUI.User'
 
@@ -55,8 +55,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'GUI.apps.GuiConfig',
-    'GUI',
+    'GUI.apps.GuiConfig',
+    # 'GUI',
     'corsheaders',
     'django_extensions',
 ]

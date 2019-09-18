@@ -40,8 +40,8 @@ if not os.path.exists(UPLOAD_PATH):
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
-ALLOWED_HOSTS = ["127.0.0.1", "92.53.127.2", "92.53.127.2:8000", "5.23.53.17",
-                 "188.225.27.75", 'localhost', 'localhost:8000', "chatlead.io"]
+ALLOWED_HOSTS = ["127.0.0.1", "92.53.127.2", "92.53.127.2:8000",
+                 'localhost', 'localhost:8000', "api.chatlead.io"]
 
 AUTH_USER_MODEL = 'GUI.User'
 
