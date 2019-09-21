@@ -33,7 +33,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/'
 # UPLOAD_PATH = os.path.join(BASE_DIR, 'uploads')
-UPLOAD_PATH = '/home/admin/chatlead/uploads'
+UPLOAD_PATH = 'uploads'
 if not os.path.exists(UPLOAD_PATH):
     os.makedirs(UPLOAD_PATH)
 
