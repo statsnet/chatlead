@@ -467,7 +467,7 @@ class UploadFile(BaseApiMethod):
                     uploaded_file = file.read()
                     save_file.write(uploaded_file)
                 return self.send_response(
-                    {'ok': True, "message": {file_type: {'filename': filename, "url": f"/app/media/{url}"}}})
+                    {'ok': True, "message": {file_type: {'filename': filename, "url": filename}}})
             return self.send_response({'ok': False, 'desk': 'some wrong'})
         except Exception as e:
             return self.send_response({'ok': False, 'desk': str(e)})
