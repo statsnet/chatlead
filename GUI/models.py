@@ -203,7 +203,7 @@ class TelegramReceivedMsg(models.Model):
     chat_title = models.CharField(max_length=512, null=True, blank=True, unique=False)
     time = models.CharField(max_length=256, null=True, blank=True, unique=False)
     message_id = models.IntegerField(null=True, blank=True, unique=False)
-    proccessed = models.BooleanField(default=False)
+    proccessed = models.NullBooleanField(default=False)
     user_data = models.CharField(max_length=512, null=True, blank=True, unique=False)
 
     def __str__(self):
